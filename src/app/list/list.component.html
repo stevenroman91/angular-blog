@@ -1,0 +1,9 @@
+<div showArticles *ngFor="let article of articles;">
+    <h4>
+        Article n°{{ article.id }}
+        <img class="delete-icon" src="/assets/delete.svg" (click)="delete(article)">
+        <img class="edit-icon" src="/assets/edit.svg" (click)="edit(article)" />
+    </h4>
+    <h4>{{ article.title }}</h4>
+    <p>{{ article.content }}</p>
+</div>
