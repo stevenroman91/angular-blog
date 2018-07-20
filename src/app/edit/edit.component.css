@@ -1,0 +1,8 @@
+div.form-group span {
+     opacity: 0;
+}
+    
+div.form-group span.invalid-feedback {
+    opacity: 1;
+    transition: 800ms opacity;
+}

@@ -1,14 +1,19 @@
 <h2>Créer un nouvel article sur le blog :</h2>
-<form (ngSubmit)="submit(blogForm)" #blogForm="ngForm">
-    <div class="form-group">
+<form (ngSubmit)="blogForm.valid && submit(blogForm)" #blogForm="ngForm">
+    <div class="form-group" [ngClass]="{'was-validated': blogForm.submitted}">
         <label for="title">Titre :</label>
         <input id="title" name="title" class="form-control"
-            [(ngModel)]="model.title">
+            required minlength="6" maxlength="255"
+            [(ngModel)]="model.title" #titleControl="ngModel">
+        <span [ngClass]="{'invalid-feedback': blogForm.submitted && titleControl.errors.required}">Champ obligatoire.</span>
+        <span [ngClass]="{'invalid-feedback': blogForm.submitted && titleControl.errors.minlength}">Doit comporter au moins 6 caractères.</span>
+        <span [ngClass]="{'invalid-feedback': blogForm.submitted && titleControl.errors.maxlength}">Doit comporter au max 255 caractères.</span>
+        <div class="valid-feedback">OK !</div>
     </div>
     <div class="form-group">
-        <label for="content">Contenu :</label>
-        <textarea id="content" name="content" class="form-control"
-            [(ngModel)]="model.content"></textarea>
+        <label for="description">Contenu :</label>
+        <textarea id="description" name="description" class="form-control"
+            [(ngModel)]="model.description"></textarea>
     </div>
     <button class="btn btn-primary">Valider</button>
 </form>
